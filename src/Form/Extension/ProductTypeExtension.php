@@ -1,14 +1,14 @@
 <?php
 
-namespace App\Form\Type;
+namespace App\Form\Extension;
 
 use App\Entity\Product\Product;
-use Sylius\Bundle\ProductBundle\Form\Type\ProductType as BaseProductType;
-use Sylius\Bundle\ResourceBundle\Form\Type\AbstractResourceType;
+use Sylius\Bundle\ProductBundle\Form\Type\ProductType;
+use Symfony\Component\Form\AbstractTypeExtension;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\FormBuilderInterface;
 
-final class ProductType extends AbstractResourceType
+final class ProductTypeExtension extends AbstractTypeExtension
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
@@ -30,8 +30,8 @@ final class ProductType extends AbstractResourceType
             );
     }
 
-    public function getParent(): string
+    public static function getExtendedTypes(): iterable
     {
-        return BaseProductType::class;
+        return [ProductType::class];
     }
 }
